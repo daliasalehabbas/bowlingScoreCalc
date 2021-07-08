@@ -1,0 +1,24 @@
+.input {
+    text-align: center;
+}
+
+.header {
+    padding: 40px;
+    text-align: center;
+    background: #4082a8;
+    color: white;
+    font-size: 30px;
+}
+
+.frame {
+    padding: 5px;
+    background: #4082a8;
+    color: white;
+    font-size: 15px;
+    border-radius: 50px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
