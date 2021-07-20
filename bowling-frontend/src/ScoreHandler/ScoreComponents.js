@@ -22,6 +22,7 @@ class ScoreComponents extends React.Component {
             localStorage.setItem('disable', true);
         }
 
+
        // localStorage.removeItem('myData');
     
 
@@ -38,7 +39,7 @@ class ScoreComponents extends React.Component {
         event.preventDefault();
 
         this.setState({ [event.target.name]: event.target.value })
-        if (event.target.name === "firstScore") {
+        if (event.target.name == "firstScore") {
             this.setState({ max: 9 - parseInt(this.state.firstScore) });
             this.setState({ validfirstScore:false })
         }
@@ -53,19 +54,20 @@ class ScoreComponents extends React.Component {
         
         console.log(parseInt(f) + parseInt(s))
         console.log("added")
-        console.log("frame: " + frame + "firstScore"+this.state.firstScore + "secondScore"+ this.state.secondScore)
+        console.log("frame: " + frame + "   firstScore: "+this.state.firstScore + "    secondScore: "+ this.state.secondScore)
         
         let score = JSON.stringify({ "frame": frame, "firstScore": this.state.firstScore, "secondScore": this.state.secondScore })
 
         ScoreService.putScore(score = { score }, frame = { frame });
         localStorage.setItem('lockFrame', false);
 
+
         window.location.reload(false);
 
     }
 
-    handleAdding() {
-       
+    handleAddingFrame() {
+
         if (!JSON.parse(localStorage.getItem('myData'))){
             localStorage.setItem('myData', JSON.stringify(1));
         }
@@ -107,7 +109,7 @@ class ScoreComponents extends React.Component {
 	render() {
 		return (
             <div>
-                <button disabled={ JSON.parse(localStorage.getItem('disable')) && JSON.parse(localStorage.getItem('lockFrame'))} className="btn btn-primary active" onClick={() => this.handleAdding()} type="submit">Add frame</button>
+                <button disabled={ JSON.parse(localStorage.getItem('disable')) || JSON.parse(localStorage.getItem('lockFrame'))} className="btn btn-primary active" onClick={() => this.handleAddingFrame()} type="submit">Add frame</button>
 
                 <h1 className="text-center">Score List</h1>
                 <table className="table table-hover">
@@ -118,7 +120,7 @@ class ScoreComponents extends React.Component {
                             <th>Second Score</th>
                             <th></th>
                            
-                            <th>total Score</th>
+                            <th>Total score</th>
 
                         </tr>
                     </thead>
@@ -137,8 +139,10 @@ class ScoreComponents extends React.Component {
                                         <td>
                                             <button  className="btn btn-success" onClick={() => this.handleSubmit(score.frame)} type="submit">Add</button>
                                         </td>
-                                     
+                        
                                         <td>{score.totalScore}</td>
+
+
                                     </tr>
                             )
                         }

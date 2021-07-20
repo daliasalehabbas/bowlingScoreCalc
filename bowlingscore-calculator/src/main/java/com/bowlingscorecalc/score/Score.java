@@ -9,6 +9,7 @@ public class Score {
 	private String frame;
 	private int firstScore;
 	private int secondScore;
+	private int totalScore;
 	
 	public Score() {
 		
@@ -24,6 +25,7 @@ public class Score {
 		this.setFrame(frame);
 		this.setFirstScore(firstScore);
 		this.setSecondScore(secondScore);
+		this.getTotalScore();
 	}
 
 	public String getFrame() {
@@ -49,6 +51,34 @@ public class Score {
 	public void setSecondScore(int secondScore) {
 		this.secondScore = secondScore;
 	}
+	
+	public void setTotalScore(int totalScore) {
+		this.totalScore=totalScore;
+	}
+	
+	public int getTotalScore() {
+		return totalScore;
+	}
+	
+	 @Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		
+		  if(obj == null || obj.getClass()!= this.getClass()) {
+	            return false;
+		  }
+		  
+		  Score score = (Score) obj;
+		  return score.frame.equals(this.frame);
+	}
+	 
+	 @Override
+	 public int hashCode() {
+		
+		 return Integer.parseInt(this.frame);
+	 }
 	
 	
 
