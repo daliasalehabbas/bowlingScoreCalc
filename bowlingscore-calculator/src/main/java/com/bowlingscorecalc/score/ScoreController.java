@@ -18,17 +18,22 @@ public class ScoreController {
 	private ScoreService scoreService;
 	
 	@RequestMapping("/scores")
-	public List<Score> getAllTopics() {
+	public List<Score> getAllScores() {
 		return scoreService.getAllScores();
 	}
 	
+	@RequestMapping("/scores/total")
+	public List<Integer> getAllTotalscores() {
+		return scoreService.getAllTotalscores();
+	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="/scores")
-	public void addTopic(@RequestBody Score score) {
+	public void addScore(@RequestBody Score score) {
 		scoreService.addScore(score);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/scores/{oldFrame}")
-	public void updateTopic(@PathVariable String oldFrame,@RequestBody Score score) {
+	public void updateScore(@PathVariable String oldFrame,@RequestBody Score score) {
 		scoreService.updateScore(oldFrame, score);
 	}
 	

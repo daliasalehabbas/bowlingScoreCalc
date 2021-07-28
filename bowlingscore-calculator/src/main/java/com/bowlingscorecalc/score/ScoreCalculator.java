@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ScoreCalculator {
 	int strikescore, sparescore=10;
-	List<Integer> masterList = new ArrayList<>(Collections.nCopies(10, 0));
+	List<Integer> masterList = new ArrayList<>(Collections.nCopies(11, 0));
 	List<Integer> lastFrameScores = new ArrayList<>(Collections.nCopies(3, 0));
 	boolean[] hasStrike = new boolean[11];
 	int totalScore=0;
@@ -12,7 +12,11 @@ public class ScoreCalculator {
 	int ballsThrowStrike=0;
 	
 	public void setIndividualScore(Score score, int frame) {
-		score.setTotalScore(masterList.get(frame));
+		score.setTotalScore(masterList.get(frame-1));
+	}
+	
+	public List<Integer> getMaterList(){
+		return masterList;
 	}
 	
 	public int getTotalScore() {
@@ -39,7 +43,12 @@ public class ScoreCalculator {
 	
 
 
-	public void addScore(int frame, int first, int second) {		
+	public void addScore(int frame, int first, int second) {
+		
+		if(frame ==10) {
+			totalScore += first;
+			masterList.set(9, totalScore);
+		}
 		if(frame == 9) {
 			if(first+second <10) {
 				masterList.add(9, totalScore+first+second);
@@ -67,14 +76,14 @@ public class ScoreCalculator {
 
 		if(first == 10) {
 			hasStrike[frame]=true;
-		}else if((first+second) == 10) {
+		}else if((first+second) == 10 && frame != 9) {
 			prevSpare=true;
 		}else {
 		int sum=first+second;
-		
+		if(frame < 10) {
 		masterList.set(frame,totalScore+sum);
 		totalScore+=sum;
-		
+		}
 		}
 	//	System.out.println("här");
 	/*	for(int i=0; i<masterList.size(); i++) {
@@ -82,6 +91,7 @@ public class ScoreCalculator {
 						}*/
 		//System.out.println(frame+": " + totalScore);
 		}
+	
 	
 
 	

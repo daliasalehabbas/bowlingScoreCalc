@@ -76,7 +76,6 @@ public class Score {
 	 
 	 @Override
 	 public int hashCode() {
-		
 		 return Integer.parseInt(this.frame);
 	 }
 	

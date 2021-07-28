@@ -37,6 +37,11 @@ public class ScoreService {
 		scoreRepository.save(score);
 		
 	}
+
+	public List<Integer> getAllTotalscores() {
+		// TODO Auto-generated method stub
+		return calc.getMaterList();
+	}
 	}
 	
 	

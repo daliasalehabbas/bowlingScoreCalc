@@ -9,6 +9,10 @@ class ScoreService {
         return axios.get(Score_REST_API_URL);
     }
 
+    getTotalScores() {
+        return axios.get('http://localhost:4001/scores/total');
+    }
+
     postScore(props) {
         return axios.post(Score_REST_API_URL, props.score, { headers: { "Content-Type": "application/json" } });
     }

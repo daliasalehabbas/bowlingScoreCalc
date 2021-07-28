@@ -1,6 +1,7 @@
 package com.bowlingscorecalc.score;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Calc {
@@ -11,6 +12,10 @@ public class Calc {
 		sc= new ScoreCalculator();
 	}
 	
+	public List<Integer> getMaterList(){
+		return sc.getMaterList();
+	}
+	
 	public void addToList(Score score) {
 		
 		if(!scores.add(score)) {
@@ -18,12 +23,14 @@ public class Calc {
 			scores.add(score);
 			
 			
-			sc.addScore(Integer.parseInt(score.getFrame()), score.getFirstScore(), score.getSecondScore());
-			
+			sc.addScore(Integer.parseInt(score.getFrame())-1, score.getFirstScore(), score.getSecondScore());
+			System.out.println("Frame added:");
+			System.out.println(Integer.parseInt(score.getFrame())-1);
+			//sc.displayScore();
 			sc.setIndividualScore(score,Integer.parseInt(score.getFrame()));
-			System.out.println("totalscore: "+ score.getFrame()+" :" + score.getTotalScore());
-			scores.stream().forEach(x -> System.out.println("frameee: "+ x.getFrame()+" firstscore: " + x.getFirstScore() +" secondScore: " + x.getSecondScore()
-			+ " totalScore: " + x.getTotalScore()));
+			//System.out.println("totalscore: "+ score.getFrame()+" :" + score.getTotalScore());
+		//	scores.stream().forEach(x -> System.out.println("frameee: "+ x.getFrame()+" firstscore: " + x.getFirstScore() +" secondScore: " + x.getSecondScore()
+	//		+ " totalScore: " + x.getTotalScore()));
 			}
 	}
 	
