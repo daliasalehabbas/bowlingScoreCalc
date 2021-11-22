@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\ScoreHandler"
   ],
+  "SelectedNode": "\\src\\ScoreHandler\\ScoreService.js",
   "PreviewInSolutionExplorer": false
 }

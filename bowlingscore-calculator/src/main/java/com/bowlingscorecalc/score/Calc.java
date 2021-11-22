@@ -17,18 +17,22 @@ public class Calc {
 	}
 	
 	public void addToList(Score score) {
+	//	System.out.print("Hereeeeeeee");
+	//	sc.getMaterList().stream().forEach(x -> System.out.println(x));
 		
 		if(!scores.add(score)) {
 			scores.remove(score);
 			scores.add(score);
-			
-			
+	//	System.out.println("Added score: " + score.getScoreAdded() );
+		//if(!score.getScoreAdded())	{
 			sc.addScore(Integer.parseInt(score.getFrame())-1, score.getFirstScore(), score.getSecondScore());
-			System.out.println("Frame added:");
-			System.out.println(Integer.parseInt(score.getFrame())-1);
+			System.out.print("added");
+			//System.out.println("Frame added:");
+			//System.out.println(Integer.parseInt(score.getFrame())-1);
 			//sc.displayScore();
 			sc.setIndividualScore(score,Integer.parseInt(score.getFrame()));
-			//System.out.println("totalscore: "+ score.getFrame()+" :" + score.getTotalScore());
+	//	}
+			System.out.println("totalscore: "+ score.getFrame()+" :" + score.getTotalScore());
 		//	scores.stream().forEach(x -> System.out.println("frameee: "+ x.getFrame()+" firstscore: " + x.getFirstScore() +" secondScore: " + x.getSecondScore()
 	//		+ " totalScore: " + x.getTotalScore()));
 			}

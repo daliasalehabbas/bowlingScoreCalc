@@ -10,6 +10,7 @@ public class Score {
 	private int firstScore;
 	private int secondScore;
 	private int totalScore;
+	private boolean scoreAdded;
 	
 	public Score() {
 		
@@ -20,11 +21,12 @@ public class Score {
 		this.setFrame(frame);
 	}
 	
-	public Score(String frame, int firstScore, int secondScore) {
+	public Score(String frame, int firstScore, int secondScore, boolean scoreAdded) {
 		super();
 		this.setFrame(frame);
 		this.setFirstScore(firstScore);
 		this.setSecondScore(secondScore);
+		this.setScoreAdded(scoreAdded);
 		this.getTotalScore();
 	}
 
@@ -58,6 +60,14 @@ public class Score {
 	
 	public int getTotalScore() {
 		return totalScore;
+	}
+	
+	public void setScoreAdded(boolean scoreAdded) {
+		this.scoreAdded=scoreAdded;
+	}
+	
+	public boolean getScoreAdded() {
+		return scoreAdded;
 	}
 	
 	 @Override

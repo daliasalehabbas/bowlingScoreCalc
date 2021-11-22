@@ -4,19 +4,20 @@ import java.util.*;
 
 public class ScoreCalculator {
 	int strikescore, sparescore=10;
-	List<Integer> masterList = new ArrayList<>(Collections.nCopies(11, 0));
+	List<Integer> masterList = new ArrayList<>(Collections.nCopies(10, 0));
 	List<Integer> lastFrameScores = new ArrayList<>(Collections.nCopies(3, 0));
 	boolean[] hasStrike = new boolean[11];
 	int totalScore=0;
 	boolean prevSpare=false;
 	int ballsThrowStrike=0;
+	boolean prevStrike =false;
 	
 	public void setIndividualScore(Score score, int frame) {
-		score.setTotalScore(masterList.get(frame-1));
+	    score.setTotalScore(masterList.get(frame - 1));
 	}
-	
-	public List<Integer> getMaterList(){
-		return masterList;
+		
+		public List < Integer > getMaterList(){
+	    return masterList;
 	}
 	
 	public int getTotalScore() {
@@ -44,16 +45,33 @@ public class ScoreCalculator {
 
 
 	public void addScore(int frame, int first, int second) {
-		
+		System.out.print("hejjjj");
+		masterList.stream().forEach(x -> System.out.println(x));
 		if(frame ==10) {
+			if(prevStrike) {
+				totalScore += first+second;
+			}else {
+			//System.out.print("here: " + totalScore);
 			totalScore += first;
+			
+			}
 			masterList.set(9, totalScore);
 		}
 		if(frame == 9) {
-			if(first+second <10) {
+			if(first ==10) {
+				prevStrike=true;
+				masterList.add(9, totalScore+first);
+				totalScore+=first;
+			}else if(first+second <10) {
 				masterList.add(9, totalScore+first+second);
+				
 				totalScore+=first+second;
+			//	System.out.println("Round 9 score: " + totalScore+ " first: " + first + "Second: " + second+ " list: " + masterList.get(9));
+				
 			}else {
+				masterList.add(9, totalScore+first+second);
+				
+				totalScore+=first+second;
 			lastFrameScores.set(0, first);
 			lastFrameScores.set(1, second);
 			}
@@ -74,13 +92,14 @@ public class ScoreCalculator {
 			prevSpare=false;
 		}
 
-		if(first == 10) {
+		if(first == 10 && frame != 9) {
 			hasStrike[frame]=true;
 		}else if((first+second) == 10 && frame != 9) {
 			prevSpare=true;
 		}else {
 		int sum=first+second;
-		if(frame < 10) {
+		
+		if(frame < 9) {
 		masterList.set(frame,totalScore+sum);
 		totalScore+=sum;
 		}
@@ -91,9 +110,6 @@ public class ScoreCalculator {
 						}*/
 		//System.out.println(frame+": " + totalScore);
 		}
-	
-	
-
 	
 	public void displayScore() {
 		for(int i=0; i<masterList.size(); i++) {
